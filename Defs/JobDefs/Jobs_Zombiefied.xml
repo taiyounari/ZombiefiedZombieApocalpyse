@@ -18,4 +18,13 @@
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     <neverFleeFromEnemies>true</neverFleeFromEnemies>
   </JobDef>
+    <JobDef>
+		<defName>ZombieTrashBuilding</defName>
+		<driverClass>Zombiefied.JobDriver_ZombieTrashBuilding</driverClass>
+		<reportString>frenzying.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>OnlyIfInstigatorNotJobTarget</checkOverrideOnDamage>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    <neverFleeFromEnemies>true</neverFleeFromEnemies>
+  </JobDef>
 </Defs>

@@ -18,7 +18,7 @@ namespace Zombiefied
         {
             this.maxDanger = Danger.Deadly;
             this.priority = 77777777777777f;
-            this.wanderRadius = 6f;
+            this.wanderRadius = 8f;
             //this.ticksBetweenWandersRange = new IntRange(125, 200);
         }
 
@@ -35,7 +35,7 @@ namespace Zombiefied
                 //pawn.mindState.canFleeIndividual = false;
                 return new Job(JobDefOf.Wait)
                 {
-                    expiryInterval = 77
+                    expiryInterval = 90
                 };
             }
 

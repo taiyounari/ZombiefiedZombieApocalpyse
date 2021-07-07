@@ -16,6 +16,7 @@ namespace Zombiefied
     {
         public static JobDef zombieHunt;
         public static JobDef zombieMove;
+        public static JobDef zombieTrashBuilding;
 
         // Token: 0x17000001 RID: 1
         // (get) Token: 0x06000018 RID: 24 RVA: 0x00002A68 File Offset: 0x00000C68
@@ -659,6 +660,17 @@ namespace Zombiefied
             zombieMove.collideWithPawns = false;
             zombieMove.neverFleeFromEnemies = true;
             InjectedDefHasher.GiveShortHashToDef(zombieMove, typeof(JobDef));
+
+            zombieTrashBuilding = new JobDef();
+            zombieTrashBuilding.driverClass = typeof(JobDriver_ZombieTrashBuilding);
+            zombieTrashBuilding.defName = "zombieTrashBuilding";
+            zombieTrashBuilding.reportString = "Frezying.";
+            zombieTrashBuilding.casualInterruptible = false;
+            zombieTrashBuilding.checkOverrideOnDamage = CheckJobOverrideOnDamageMode.Never;
+            zombieTrashBuilding.allowOpportunisticPrefix = true;
+            zombieTrashBuilding.collideWithPawns = false;
+            zombieTrashBuilding.neverFleeFromEnemies = true;
+            InjectedDefHasher.GiveShortHashToDef(zombieTrashBuilding, typeof(JobDef));
 
             ThingDef zombieThingDef = ThingDef.Named("Zombie");
             ToolCapacityDef zBite = new ToolCapacityDef();
