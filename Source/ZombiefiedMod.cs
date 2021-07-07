@@ -751,7 +751,7 @@ namespace Zombiefied
                     {
                         float rbFactor = 0.5f;
                         float gFactor = 0.7f;
-                        if (sourcePawnKindDef.RaceProps.Animal)
+                        if (sourcePawnKindDef.RaceProps.Animal&&!disableAnimalZombies)
                         {
                             count++;
 
@@ -856,6 +856,22 @@ namespace Zombiefied
                                     }
                                     return false;
                                 };
+                                Predicate<StatModifier> findArmorPenetrationSharp = delegate (StatModifier statMod)
+                                {
+                                    if (statMod.stat.defName == "armorPenetrationSharp")
+                                    {
+                                        return true;
+                                    }
+                                    return false;
+                                };
+                                Predicate<StatModifier> findArmorPenetrationBlunt = delegate (StatModifier statMod)
+                                {
+                                    if (statMod.stat.defName == "armorPenetrationBlunt")
+                                    {
+                                        return true;
+                                    }
+                                    return false;
+                                };
 
                                 //reached
 
@@ -929,6 +945,7 @@ namespace Zombiefied
                                 //setup standard zombie
 
                                 //CE SUPPORT
+                                bool CEenabled = false;
                                 StatModifier statCEDodge;
                                 statCEDodge = sourcePawnKindDef.race.statBases.Find(findMeleeDodgeChance);
                                 if(statCEDodge != null)
@@ -937,6 +954,7 @@ namespace Zombiefied
                                     newThingDef.statBases.Add(statCEDodge);
                                     if (first)
                                     {
+                                        CEenabled = true;
                                         zombieThingDef.statBases.Add(statCEDodge);
                                     }
                                 }
@@ -958,11 +976,12 @@ namespace Zombiefied
                                     if (first)
                                     {
                                         zombieThingDef.statBases.Add(statCEParry);
+                                        
                                     }
                                 }
                                 //CE SUPPORT
                                 first = false;
-
+                                
                                 newThingDef.BaseMarketValue = sourcePawnKindDef.race.BaseMarketValue;
 
                                 //reached
@@ -985,6 +1004,8 @@ namespace Zombiefied
                                         nTool.capacities.Add(zScratch);
                                     }
 
+                                    
+
                                     nTool.id = "" + iTool;
 
                                     nTool.label = tool.label;
@@ -994,7 +1015,10 @@ namespace Zombiefied
                                     nTool.linkedBodyPartsGroup = tool.linkedBodyPartsGroup;
                                     nTool.surpriseAttack = tool.surpriseAttack;
                                     nTool.chanceFactor = tool.chanceFactor;
-
+                                    if(CEenabled)
+                                    {
+                                        
+                                    }
                                     newThingDef.tools.Add(nTool);
                                 }
 
@@ -1028,7 +1052,7 @@ namespace Zombiefied
                                 newThingDef.race.needsRest = false;
                                 newThingDef.race.baseBodySize = sourcePawnKindDef.race.race.baseBodySize;
                                 newThingDef.race.baseHungerRate = sourcePawnKindDef.race.race.baseHungerRate;
-                                newThingDef.race.baseHealthScale = sourcePawnKindDef.race.race.baseHealthScale;
+                                newThingDef.race.baseHealthScale = sourcePawnKindDef.race.race.baseHealthScale*0.8f;
                                 newThingDef.race.foodType = zombieThingDef.race.foodType;
                                 newThingDef.race.predator = zombieThingDef.race.predator;
                                 newThingDef.race.makesFootprints = sourcePawnKindDef.race.race.makesFootprints;
